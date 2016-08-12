@@ -1,4 +1,4 @@
-package momentoustest;
+package com.momentous.test.menu.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

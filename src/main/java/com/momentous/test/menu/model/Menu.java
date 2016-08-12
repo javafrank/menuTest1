@@ -1,4 +1,4 @@
-package momentoustest.model;
+package com.momentous.test.menu.model;
 
 /**
  * Created by fcontreras on 11/08/16.
