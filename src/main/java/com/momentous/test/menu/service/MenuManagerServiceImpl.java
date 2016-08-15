@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static com.momentous.test.menu.util.MethodUtil.call;
+import static com.momentous.test.menu.util.MethodUtil.callVoid;
+
 /**
  * Created by fcontreras on 12/08/16.
  */
@@ -17,36 +20,39 @@ import java.util.List;
 public class MenuManagerServiceImpl implements MenuManagerService {
     @Override
     public List<Menu> getAllMenues() {
-        return TestData.getMenues();
+        return call(TestData::getMenues, "'getAllMenues()'");
     }
 
     @Override
     public Menu getMenu(long id) {
-        return TestData.getMenu(id);
+        return call(() -> TestData.getMenu(id), "'getMenu'");
     }
 
     @Override
     public List<Item> getItems(long menuId) {
-        return ItemSearch.getItems(menuId);
+        return call(() -> ItemSearch.getItems(menuId), "'getItems'");
     }
 
     @Override
     public List<Item> getItemsSortByPrice(long menuId) {
-        return ItemSearch.getItemsOrderByPrice(menuId);
+        return call(() -> ItemSearch.getItemsOrderByPrice(menuId), "'getItemsSortByPrice'");
     }
 
     @Override
     public BigDecimal sumPriceItems(Menu menu) {
-        return MenuUtil.sumPriceItems(menu);
+        return call(() -> MenuUtil.sumPriceItems(menu), "'sumPriceItems'");
     }
 
     @Override
     public int enabledSubmenues(Menu menu) {
-        return MenuUtil.enabledSubmenues(menu, true);
+        return call(() -> MenuUtil.enabledSubmenues(menu, true), "'enabledSubmenues'");
     }
 
     @Override
     public void printNamesSubmenues(Menu menu) {
-        MenuUtil.printNamesSubmenues(menu);
+        callVoid(() -> {
+            MenuUtil.printNamesSubmenues(menu);
+            return null;
+        }, "'printNamesSubmenues'");
     }
 }

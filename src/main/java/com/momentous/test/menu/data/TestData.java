@@ -5,6 +5,7 @@ import com.momentous.test.menu.model.item.Rank;
 import com.momentous.test.menu.model.item.Schedule;
 import com.momentous.test.menu.model.menu.Menu;
 import com.momentous.test.menu.util.CurrencyUtil;
+import com.momentous.test.menu.util.DateTimeUtil;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -39,12 +40,11 @@ public class TestData {
                 .price(BigDecimal.valueOf(12.0))
                 .rank(Rank.FOUR_STAR).build();
 
-        Schedule schedule = new Schedule();
-        schedule.setDays(new HashSet<>(Arrays.asList(MONDAY, TUESDAY, WEDNESDAY)));
-        schedule.setDateFrom(LocalDate.of(2016, 1, 1));
-        schedule.setDateTo(LocalDate.of(2017, 1, 1));
-        schedule.setFrom(LocalTime.of(8, 0));
-        schedule.setTo(LocalTime.of(17, 0));
+        Schedule schedule = new Schedule.Builder().days(DateTimeUtil.weekDays())
+                .dateFrom(LocalDate.of(2016, 1, 1))
+                .dateTo(LocalDate.of(2017, 1, 1))
+                .from(LocalTime.of(8, 0))
+                .to(LocalTime.of(17, 0)).build();
 
         arroz.setSchedule(schedule);
         pollo.setSchedule(schedule);

@@ -30,7 +30,7 @@ public class MenuManagerResource {
     }
 
     @RequestMapping("/menues")
-    public List getAllMenues() {
+    public List getAllMenues() throws Exception {
         return menuManagerService.getAllMenues();
     }
 
