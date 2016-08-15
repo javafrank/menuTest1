@@ -1,16 +1,16 @@
 package com.momentous.test.menu.resource;
 
-import com.momentous.test.menu.data.TestData;
+import com.momentous.test.menu.exception.CouldNotGetDataException;
+import com.momentous.test.menu.exception.MenuException;
 import com.momentous.test.menu.model.item.Item;
 import com.momentous.test.menu.model.menu.Menu;
 import com.momentous.test.menu.service.MenuManagerService;
-import com.momentous.test.menu.util.MenuUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -47,5 +47,15 @@ public class MenuManagerResource {
     @RequestMapping("/menu/{id}/items/sort/price")
     public List<Item> getItemsSortByPrice(@PathVariable("id") long id) {
         return menuManagerService.getItemsSortByPrice(id);
+    }
+
+    @RequestMapping("/ex1")
+    public void ex1() {
+        throw new MenuException("error de menu");
+    }
+
+    @ExceptionHandler(value = MenuException.class)
+    public String simpleExceptionHandler(MenuException e){
+        return e.getMessage();
     }
 }

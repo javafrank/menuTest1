@@ -2,6 +2,8 @@ package com.momentous.test.menu.service;
 
 import com.momentous.test.menu.data.ItemSearch;
 import com.momentous.test.menu.data.TestData;
+import com.momentous.test.menu.exception.CouldNotGetDataException;
+import com.momentous.test.menu.exception.MenuException;
 import com.momentous.test.menu.model.item.Item;
 import com.momentous.test.menu.model.menu.Menu;
 import com.momentous.test.menu.util.MenuUtil;
@@ -24,7 +26,7 @@ public class MenuManagerServiceImpl implements MenuManagerService {
     }
 
     @Override
-    public Menu getMenu(long id) {
+    public Menu getMenu(long id) throws MenuException {
         return call(() -> TestData.getMenu(id), "'getMenu'");
     }
 

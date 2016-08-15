@@ -1,5 +1,7 @@
 package com.momentous.test.menu.service;
 
+import com.momentous.test.menu.exception.CouldNotGetDataException;
+import com.momentous.test.menu.exception.MenuException;
 import com.momentous.test.menu.model.item.Item;
 import com.momentous.test.menu.model.menu.Menu;
 
@@ -11,10 +13,10 @@ import java.util.List;
  */
 public interface MenuManagerService {
     List<Menu> getAllMenues();
-    Menu getMenu(long id);
+    Menu getMenu(long id) throws MenuException;
     List<Item> getItems(long menuId);
     List<Item> getItemsSortByPrice(long menuId);
-    BigDecimal sumPriceItems(Menu menu);
+    BigDecimal sumPriceItems(Menu menu) ;
     int enabledSubmenues(Menu menu);
-    void printNamesSubmenues(Menu menu);
+    void printNamesSubmenues(Menu menu) ;
 }

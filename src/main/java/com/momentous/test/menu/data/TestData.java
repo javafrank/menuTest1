@@ -1,5 +1,7 @@
 package com.momentous.test.menu.data;
 
+import com.momentous.test.menu.exception.CouldNotGetDataException;
+import com.momentous.test.menu.exception.MenuNotFoundException;
 import com.momentous.test.menu.model.item.Item;
 import com.momentous.test.menu.model.item.Rank;
 import com.momentous.test.menu.model.item.Schedule;
@@ -63,12 +65,16 @@ public class TestData {
         return menues;
     }
 
-    public static Menu getMenu(long id) {
+    public static Menu getMenu(long id) throws CouldNotGetDataException {
         List<Menu> menues = getMenues();
-        return MenuSearch.search(menues.get(0), id);
+        try {
+            return MenuSearch.search(menues.get(0), id);
+        } catch (MenuNotFoundException e) {
+            throw new CouldNotGetDataException(e);
+        }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CouldNotGetDataException {
         System.out.println(getMenu(1));
     }
 }

@@ -1,12 +1,10 @@
 package com.momentous.test.menu.util;
 
-import com.momentous.test.menu.service.MenuManagerServiceImpl;
+import com.momentous.test.menu.exception.MenuException;
 
 import java.text.DecimalFormat;
 import java.util.concurrent.Callable;
 import java.util.logging.Logger;
-
-import static javafx.scene.input.KeyCode.T;
 
 /**
  * Created by fcontreras on 15/08/16.
@@ -14,18 +12,22 @@ import static javafx.scene.input.KeyCode.T;
 public class MethodUtil {
     private final static Logger LOGGER = Logger.getLogger(MethodUtil.class.getName());
 
-    public static <T> T call(Callable<T> func, String methodName) {
+    public static <T> T call(Callable<T> func, String methodName) throws MenuException {
         long startTime = System.nanoTime();
         T returns = null;
+
         try {
             returns = func.call();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new MenuException("Ha ocurrido un error: " + e.getMessage(), e);
         }
+
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
 
-        LOGGER.info("Call to method " + methodName + " takes " + toSec(duration) + " sec.");
+        String message = "Call to method " + methodName + " takes " + toSec(duration) + " sec.";
+        System.out.println(message);
+        LOGGER.info(message);
 
         return returns;
     }
