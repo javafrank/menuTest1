@@ -11,10 +11,19 @@ import java.util.List;
  * Created by frank on 8/14/16.
  */
 public class MenuUtil {
+    /**
+     * Return the root menu object of this test
+     * @return
+     */
     public static Menu root() {
         return TestData.getMenues().get(0);
     }
 
+    /**
+     * Returns the sum of prices of all items of menu and submenues
+     * @param menu
+     * @return
+     */
     public static BigDecimal sumPriceItems(Menu menu) {
         BigDecimal price = BigDecimal.valueOf(0.0);
         price.add(sumPriceItems(menu.getItems(), price));
@@ -28,6 +37,12 @@ public class MenuUtil {
         return price;
     }
 
+    /**
+     * Returns the sum of prices of items and add to price parameter
+     * @param items
+     * @param price
+     * @return
+     */
     private static BigDecimal sumPriceItems(List<Item> items, BigDecimal price) {
         if (items != null && !items.isEmpty()) {
             for (Item item :
@@ -38,6 +53,12 @@ public class MenuUtil {
         return price;
     }
 
+    /**
+     * Rerturns the num of submenues enabled of a menu given
+     * @param menu
+     * @param b
+     * @return
+     */
     public static int enabledSubmenues(Menu menu, boolean b) {
         int count = 0;
         List<Menu> submenues = menu.getMenues();
@@ -50,6 +71,10 @@ public class MenuUtil {
         return count;
     }
 
+    /**
+     * Prints the names of all submenues of a menu given
+     * @param menu
+     */
     public static void printNamesSubmenues(Menu menu) {
         List<Menu> menues = menu.getMenues();
         if (menues != null && !menues.isEmpty()) {
@@ -58,9 +83,5 @@ public class MenuUtil {
                 System.out.println(String.format("Menú %d: %s", submenu.getId(), submenu.getDescription()));
             }
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(sumPriceItems(root()));
     }
 }

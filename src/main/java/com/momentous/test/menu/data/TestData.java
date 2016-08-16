@@ -1,13 +1,13 @@
 package com.momentous.test.menu.data;
 
 import com.momentous.test.menu.exception.CouldNotGetDataException;
-import com.momentous.test.menu.exception.MenuNotFoundException;
 import com.momentous.test.menu.model.item.Item;
-import com.momentous.test.menu.model.item.Rank;
 import com.momentous.test.menu.model.item.Schedule;
+import com.momentous.test.menu.util.DateTimeUtil;
+import com.momentous.test.menu.exception.MenuNotFoundException;
+import com.momentous.test.menu.model.item.Rank;
 import com.momentous.test.menu.model.menu.Menu;
 import com.momentous.test.menu.util.CurrencyUtil;
-import com.momentous.test.menu.util.DateTimeUtil;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,14 +16,14 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
-import static java.time.DayOfWeek.*;
-
 /**
  * Created by frank on 8/14/16.
  */
 public class TestData {
-    private final static Logger LOGGER = Logger.getLogger(TestData.class.getName());
-
+    /**
+     * Get all menu structure of this test
+     * @return
+     */
     public static List<Menu> getMenues() {
         final AtomicLong itemCounter = new AtomicLong();
         final AtomicLong menuCounter = new AtomicLong();
@@ -65,6 +65,12 @@ public class TestData {
         return menues;
     }
 
+    /**
+     * Get a menu when of id given
+     * @param id id of menu
+     * @return
+     * @throws CouldNotGetDataException
+     */
     public static Menu getMenu(long id) throws CouldNotGetDataException {
         List<Menu> menues = getMenues();
         try {
@@ -72,9 +78,5 @@ public class TestData {
         } catch (MenuNotFoundException e) {
             throw new CouldNotGetDataException(e);
         }
-    }
-
-    public static void main(String[] args) throws CouldNotGetDataException {
-        System.out.println(getMenu(1));
     }
 }

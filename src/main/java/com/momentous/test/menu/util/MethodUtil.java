@@ -12,6 +12,14 @@ import java.util.logging.Logger;
 public class MethodUtil {
     private final static Logger LOGGER = Logger.getLogger(MethodUtil.class.getName());
 
+    /**
+     * Call a method and print in log the execution time of this
+     * @param func
+     * @param methodName
+     * @param <T>
+     * @return
+     * @throws MenuException
+     */
     public static <T> T call(Callable<T> func, String methodName) throws MenuException {
         long startTime = System.nanoTime();
         T returns = null;
@@ -32,6 +40,11 @@ public class MethodUtil {
         return returns;
     }
 
+    /**
+     * Call a method and print in log the execution time of this
+     * @param func
+     * @param methodName
+     */
     public static void callVoid(Callable func, String methodName) {
         long startTime = System.nanoTime();
         try {

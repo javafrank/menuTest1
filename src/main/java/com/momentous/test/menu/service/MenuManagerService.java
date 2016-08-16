@@ -1,6 +1,5 @@
 package com.momentous.test.menu.service;
 
-import com.momentous.test.menu.exception.CouldNotGetDataException;
 import com.momentous.test.menu.exception.MenuException;
 import com.momentous.test.menu.model.item.Item;
 import com.momentous.test.menu.model.menu.Menu;

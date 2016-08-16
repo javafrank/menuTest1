@@ -7,6 +7,13 @@ import com.momentous.test.menu.model.menu.Menu;
  * Created by frank on 8/14/16.
  */
 public class MenuSearch {
+    /**
+     * Search a menu inside a menu given
+     * @param menu menu
+     * @param id id of menu to search
+     * @return
+     * @throws MenuNotFoundException
+     */
     public static Menu search(Menu menu, long id) throws MenuNotFoundException {
         if (menu.getId() == id) {
             return menu;

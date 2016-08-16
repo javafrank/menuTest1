@@ -1,6 +1,5 @@
 package com.momentous.test.menu.resource;
 
-import com.momentous.test.menu.exception.CouldNotGetDataException;
 import com.momentous.test.menu.exception.MenuException;
 import com.momentous.test.menu.model.item.Item;
 import com.momentous.test.menu.model.menu.Menu;
@@ -47,11 +46,6 @@ public class MenuManagerResource {
     @RequestMapping("/menu/{id}/items/sort/price")
     public List<Item> getItemsSortByPrice(@PathVariable("id") long id) {
         return menuManagerService.getItemsSortByPrice(id);
-    }
-
-    @RequestMapping("/ex1")
-    public void ex1() {
-        throw new MenuException("error de menu");
     }
 
     @ExceptionHandler(value = MenuException.class)
